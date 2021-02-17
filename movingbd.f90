@@ -1,6 +1,5 @@
 subroutine set_moving_boundary()
 use vars
-real angle
 angle=omg*tt
 do i=1,ied
 do j=1,jed
@@ -8,6 +7,7 @@ do j=1,jed
 enddo
 enddo
 call reset_interface()
+call reset_velocity()
 end subroutine
 
 !-----------------------------------------------
@@ -34,5 +34,29 @@ do i=2,ied-1
 		if(ph(i+1,j+1)==2) ph(i+1,j+1)=1
 		if(ph(i-1,j+1)==2) ph(i-1,j+1)=1
 	endif
+enddo
 
+i=1
+do j=2,jed-1
+	if (ph(i,j)==0) then
+		if(ph(i,j+1)==2) ph(i,j+1)=1	
+		if(ph(i+1,j+1)==2) ph(i+1,j+1)=1
+		if(ph(i+1,j)==2) ph(i+1,j)=1
+	endif
+enddo
+end subroutine
+!-----------------------------------------------
+subroutine reset_velocity()
+use vars
+integer i,j,k1,k2
+real dist
+do i=2,ied-1
+do j=2,jed-1
+	if (ph(i,j)==1) then
+		dist=sqrt(x(i,j)**2+y(i,j)**2)
+		v(i,j)=omg*dist*cos(algle)
+		u(i,j)=omg*dist*sin(angle)
+	endif
+enddo
+enddo
 end subroutine

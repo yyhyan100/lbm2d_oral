@@ -47,6 +47,7 @@ integer i,j,k1,k2
 ph(ist,:)=1
 ph(:,jst)=1
 ph(:,jed)=1
+call set_moving_boundary()
 end subroutine
 !-----------------------------------------------
 subroutine init_f()

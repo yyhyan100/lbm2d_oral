@@ -1,7 +1,7 @@
 module vars
 integer,parameter:: Q=8
 integer ied,jed
-real dx,dt,tt,t_end
+real dx,dt,tt,t_end,angle
 real ei(0:Q,2)
 real, pointer:: f(:,:,:), feq(:,:,:), u(:,:), v(:,:), rho(:,:)
 integer, pointer:: ph(:,:)
