@@ -54,7 +54,7 @@ do i=2,ied-1
 do j=2,jed-1
 	if (ph(i,j)==1) then
 		dist=sqrt(x(i,j)**2+y(i,j)**2)
-		v(i,j)=omg*dist*cos(algle)
+		v(i,j)=omg*dist*cos(angle)
 		u(i,j)=omg*dist*sin(angle)
 	endif
 enddo
