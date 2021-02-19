@@ -21,11 +21,11 @@ call NumToChar(kstep, num2char, len(num2char))
 filename=trim(filename)//trim(num2char)//".dat"
 print*, "write data file ...", filename
 open(99,file=filename)
-	write(99,*) "variables=x,y,rho,u,v"
+	write(99,*) "variables=x,y,rho,u,v,ph"
 	write(99,*)  "zone ", "i= ", ied, " j= ", jed
 	do j=1,jed
 		do i=1,ied
-			write(99,*) x(i,j),y(i,j),rho(i,j),u(i,j),v(i,j)
+			write(99,*) x(i,j),y(i,j),rho(i,j),u(i,j),v(i,j),ph(i,j)
         enddo
 	enddo
 close(99)

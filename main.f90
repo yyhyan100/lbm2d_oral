@@ -6,6 +6,7 @@ call init()
 
 kstep=1
 do while (tt<=t_end)
+	call set_moving_boundary()
 	call streaming()
 	call bc()
 	call getMacro()
@@ -14,7 +15,7 @@ do while (tt<=t_end)
 	call output(kstep)
 	kstep=kstep+1
 	tt=tt+dt
-	call set_moving_boundary()
+
 enddo
 call output(kstep-1)
 call deallocateField()

@@ -1,9 +1,10 @@
 subroutine set_moving_boundary()
 use vars
-angle=omg*tt
+alpha=omega*tt
+print *, "angle=",alpha
 do i=1,ied
 do j=1,jed
-	if (y(i,j) < -tan(angle)*x(i,j)) ph(i,j)=0
+	if (y(i,j) < -tan(alpha)*x(i,j)) ph(i,j)=0
 enddo
 enddo
 call reset_interface()
@@ -54,8 +55,8 @@ do i=2,ied-1
 do j=2,jed-1
 	if (ph(i,j)==1) then
 		dist=sqrt(x(i,j)**2+y(i,j)**2)
-		v(i,j)=omg*dist*cos(angle)
-		u(i,j)=omg*dist*sin(angle)
+		v(i,j)=omega*dist*cos(alpha)
+		u(i,j)=omega*dist*sin(alpha)
 	endif
 enddo
 enddo

@@ -4,7 +4,7 @@ subroutine init()
 	integer i,j
 	real uv,eu,tao
 	open(10,file="control.in")
-	read(10,*) ied,jed,dx,dt,omg
+	read(10,*) ied,jed,dx,dt,omega
 	read(10,*) u0,rho_in,rho_out,tao
 	read(10,*) t_end,kstep_save,kstep_view,file_format
 	read(10,*) output_filename
