@@ -38,16 +38,12 @@ do j=1,jed
 		enddo
 		u(i,j)=u(i,j)/rho(i,j)
 		v(i,j)=v(i,j)/rho(i,j)
+	else
+		u(i,j)=0.0
+		v(i,j)=0.0
 	endif
 enddo
 enddo
 
-i=1
-do j=1,jed-1
-	if (ph(i,j)==2) then
-		u(i,j)=u0
-		v(i,j)=0.0
-	endif
-enddo
 call reset_velocity()
 end subroutine
