@@ -9,6 +9,8 @@ subroutine init()
 	read(10,*) t_end,kstep_save,kstep_view,file_format
 	read(10,*) output_filename
 	close(10)
+	ist=1
+	jst=1
 	omg=1.0/tao
 	print *, "nu = ", (2*tao-1)*dx*dx/dt/6 
 	print *, "Re = ", ied*u0*dt*6/(2*tao-1)*dx

@@ -1,6 +1,6 @@
 module vars
 integer,parameter:: Q=8
-integer ied,jed
+integer ied,jed,ist,jst
 real dx,dt,tt,t_end,alpha,omega
 real ei(0:Q,2)
 real, pointer:: f(:,:,:), feq(:,:,:), u(:,:), v(:,:), rho(:,:)
