@@ -62,7 +62,7 @@ do i=1,ied
 			uv=u(i,j)**2+v(i,j)**2
 			do k=0,Q
 				eu=ei(k,1)*u(i,j)+ei(k,2)*v(i,j)
-				feq(k,i,j)=wi(k)*rho(i,j)*(1+3*eu+4.5*eu*eu-1.5*uv)
+				feq(k,i,j)=wi(k)*(rho(i,j)+3*eu+4.5*eu*eu-1.5*uv)
 			enddo
 		endif
 	enddo
