@@ -1,11 +1,13 @@
 program main
 use vars
 integer kstep
+real, parameter :: pi=3.14159265
 tt=0.0
+alpha=0.0
 call init()
 
 kstep=1
-do while (tt<=t_end)
+do while (alpha<=pi/2.0)
 	call set_moving_boundary()
 	call streaming()
 	call bc()
