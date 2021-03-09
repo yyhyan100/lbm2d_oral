@@ -1,9 +1,9 @@
-400 200 0.01 0.01 0.01
+400 200 0.01 0.01 0.04
 0.05 1.0 0.6 1.0
 10 100 10 1
 "tcp_"
 
 !	read(10,*) ied,jed,dx,dt,omega
-!	read(10,*) u0,rho_in,rho_out
+!	read(10,*) u0,rho_in,rho_out,tao
 !	read(10,*) t_end,kstep_save,kstep_view,file_format
 !	read(10,*) output_filename

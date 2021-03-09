@@ -42,6 +42,7 @@ do j=1,jed
 		u(i,j)=u(i,j)/rho(i,j)
 		v(i,j)=v(i,j)/rho(i,j)
 	else
+		rho(i,j)=10.0
 		u(i,j)=0.0
 		v(i,j)=0.0
 	endif
