@@ -1,5 +1,6 @@
 module vars
 integer,parameter:: Q=8
+integer, parameter:: defInner=2, defWall=1, defNotCal=0
 integer ied,jed,ist,jst
 real dx,dt,tt,t_end,alpha,omega
 real ei(0:Q,2)
