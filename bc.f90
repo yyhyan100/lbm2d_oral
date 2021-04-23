@@ -114,9 +114,9 @@ subroutine lower_wall() ! bounce back boundary condition
 	j=1
 	do i=1,ied
 		if(ph(i,j)==defWall) then
-			if(ph(i,j+1)==2) f(2,i,j)=f(4,i,j)
-			if(ph(i+1,j+1)==2) f(5,i,j)=f(7,i,j)
-			if(ph(i-1,j+1)==2) f(6,i,j)=f(8,i,j)
+			if(ph(i,j+1)==defInner) f(2,i,j)=f(4,i,j)
+			if(ph(i+1,j+1)==defInner) f(5,i,j)=f(7,i,j)
+			if(ph(i-1,j+1)==defInner) f(6,i,j)=f(8,i,j)
 		endif
 	enddo
 end subroutine
@@ -128,14 +128,14 @@ subroutine inner_wall()  ! bounce back boundary condition for inner bounds
 	do i=2,ied-1
 	do j=2,jed-1
 		if(ph(i,j)==defWall) then
-			if(ph(i+1,j)==2) f(1,i,j)=f(3,i,j)-2*wi(3)*rho(i,j)*(ei(3,1)*u(i,j)+ei(3,2)*v(i,j))/3.0
-			if(ph(i,j+1)==2) f(2,i,j)=f(4,i,j)-2*wi(4)*rho(i,j)*(ei(4,1)*u(i,j)+ei(4,2)*v(i,j))/3.0
-			if(ph(i-1,j)==2) f(3,i,j)=f(1,i,j)-2*wi(1)*rho(i,j)*(ei(1,1)*u(i,j)+ei(1,2)*v(i,j))/3.0
-			if(ph(i,j-1)==2) f(4,i,j)=f(2,i,j)-2*wi(2)*rho(i,j)*(ei(2,1)*u(i,j)+ei(2,2)*v(i,j))/3.0
-			if(ph(i+1,j+1)==2) f(5,i,j)=f(7,i,j)-2*wi(7)*rho(i,j)*(ei(7,1)*u(i,j)+ei(7,2)*v(i,j))/3.0
-			if(ph(i-1,j+1)==2) f(6,i,j)=f(8,i,j)-2*wi(8)*rho(i,j)*(ei(8,1)*u(i,j)+ei(8,2)*v(i,j))/3.0
-			if(ph(i-1,j-1)==2) f(7,i,j)=f(5,i,j)-2*wi(5)*rho(i,j)*(ei(5,1)*u(i,j)+ei(5,2)*v(i,j))/3.0
-			if(ph(i+1,j-1)==2) f(8,i,j)=f(6,i,j)-2*wi(6)*rho(i,j)*(ei(6,1)*u(i,j)+ei(6,2)*v(i,j))/3.0
+			if(ph(i+1,j)==defInner) f(1,i,j)=f(3,i,j)-2*wi(3)*rho(i,j)*(ei(3,1)*u(i,j)+ei(3,2)*v(i,j))/3.0
+			if(ph(i,j+1)==defInner) f(2,i,j)=f(4,i,j)-2*wi(4)*rho(i,j)*(ei(4,1)*u(i,j)+ei(4,2)*v(i,j))/3.0
+			if(ph(i-1,j)==defInner) f(3,i,j)=f(1,i,j)-2*wi(1)*rho(i,j)*(ei(1,1)*u(i,j)+ei(1,2)*v(i,j))/3.0
+			if(ph(i,j-1)==defInner) f(4,i,j)=f(2,i,j)-2*wi(2)*rho(i,j)*(ei(2,1)*u(i,j)+ei(2,2)*v(i,j))/3.0
+			if(ph(i+1,j+1)==defInner) f(5,i,j)=f(7,i,j)-2*wi(7)*rho(i,j)*(ei(7,1)*u(i,j)+ei(7,2)*v(i,j))/3.0
+			if(ph(i-1,j+1)==defInner) f(6,i,j)=f(8,i,j)-2*wi(8)*rho(i,j)*(ei(8,1)*u(i,j)+ei(8,2)*v(i,j))/3.0
+			if(ph(i-1,j-1)==defInner) f(7,i,j)=f(5,i,j)-2*wi(5)*rho(i,j)*(ei(5,1)*u(i,j)+ei(5,2)*v(i,j))/3.0
+			if(ph(i+1,j-1)==defInner) f(8,i,j)=f(6,i,j)-2*wi(6)*rho(i,j)*(ei(6,1)*u(i,j)+ei(6,2)*v(i,j))/3.0
 		endif
 	enddo
 	enddo

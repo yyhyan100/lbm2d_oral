@@ -1,6 +1,12 @@
 module vars
 integer,parameter:: Q=8
-integer, parameter:: defInner=2, defWall=1, defNotCal=0
+integer, parameter:: defNone=0
+integer, parameter:: defWall=1
+integer, parameter:: defInner=2
+integer, parameter:: defMovingWall=3
+integer, parameter:: defInlet=4
+integer, parameter:: defOutlet=5
+
 integer ied,jed,ist,jst
 real dx,dt,tt,t_end,alpha,omega
 real ei(0:Q,2)

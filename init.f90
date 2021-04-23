@@ -36,21 +36,34 @@ subroutine init()
 	wi(0)=4.0/9
 	wi(1:4)=1.0/9
 	wi(5:8)=1.0/36
-
-	ph(:,:)=2
 	
-call set_init_interface()
+call set_init_ph()
 call init_f()
 end subroutine
 !-----------------------------------------------
-subroutine set_init_interface()
+subroutine set_init_ph()
 use vars
-integer i,j,k1,k2
-ph(ist,:)=1
-ph(:,jst)=1
-ph(:,jed)=1
-call set_moving_boundary()
-call set_top_boundary()
+integer i,j
+
+ph(:,:)=defInner
+ph(1,:)=defWall
+ph(ied,:)=defOutlet
+ph(:,1)=defWall
+ph(:,jed)=defWall
+
+open(22, file='./top_profile/j_index.wall')
+do i=1,ied
+	read(22,*) j0
+	ph(i,j0)=defWall
+	do j = j0+1, jed
+		ph(i,j)=defNone
+	enddo
+enddo
+close(22)
+
+ph(1:300,1)=defMovingWall
+
+! call set_moving_boundary()
 end subroutine
 !-----------------------------------------------
 subroutine init_f()
@@ -81,23 +94,3 @@ enddo
 enddo
 end subroutine
 
-subroutine set_top_boundary()
-use vars
-integer i,j
-
-open(22, file='./top_profile/j_index.wall')
-do i=1,ied
-	read(22,*) j0
-	ph(i,j0)=1
-	do j = j0+1, jed
-		ph(i,j)=defNotCal
-	enddo
-enddo
-! i=ied
-! read(22,*) j0
-! ! ph(i,j0)=1
-! do j = j0+1, jed
-! 	ph(i,j)=0
-! enddo
-close(22)
-end subroutine
