@@ -7,7 +7,7 @@ alpha=0.0
 call init()
 
 kstep=1
-do while (alpha<=pi/2.0)
+do while (alpha<=pi/2.0 .and. tt <= t_end)
 	call set_moving_boundary()
 	call streaming()
 	call bc()

@@ -52,12 +52,13 @@ use vars
 integer i,j,k1,k2
 real dist
 do i=2,ied-1
-do j=2,jed-1
+do j=2,upper_jed(i)-1
 	if (ph(i,j)==defWall) then
 		dist=sqrt(x(i,j)**2+y(i,j)**2)
 		v(i,j)=omega*dist*cos(alpha)
 		u(i,j)=omega*dist*sin(alpha)
 	endif
+
 enddo
 enddo
 end subroutine

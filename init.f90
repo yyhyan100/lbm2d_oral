@@ -49,8 +49,8 @@ integer i,j,k1,k2
 ph(ist,:)=1
 ph(:,jst)=1
 ph(:,jed)=1
-call set_moving_boundary()
 call set_top_boundary()
+call set_moving_boundary()
 end subroutine
 !-----------------------------------------------
 subroutine init_f()
@@ -88,16 +88,20 @@ integer i,j
 open(22, file='./top_profile/j_index.wall')
 do i=1,ied
 	read(22,*) j0
-	ph(i,j0)=1
+	! j0=sqrt(90000.0-(i-200)**2)-150
+	! print*, j0
+	! j0=100
+	! j0=i/4+1
+	! j0=150-i/4
+	upper_jed(i)=j0
+enddo
+
+do i=1,ied
+	j0=upper_jed(i)
+	ph(i,j0)=defWall
 	do j = j0+1, jed
 		ph(i,j)=defNotCal
 	enddo
 enddo
-! i=ied
-! read(22,*) j0
-! ! ph(i,j0)=1
-! do j = j0+1, jed
-! 	ph(i,j)=0
-! enddo
 close(22)
 end subroutine

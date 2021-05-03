@@ -6,6 +6,7 @@ real dx,dt,tt,t_end,alpha,omega
 real ei(0:Q,2)
 real, pointer:: f(:,:,:), feq(:,:,:), u(:,:), v(:,:), rho(:,:)
 integer, pointer:: ph(:,:)
+integer, pointer:: upper_jed(:)
 real, pointer:: x(:,:), y(:,:)
 real wi(0:Q),g(0:Q)
 real omg,u0,rho_in,rho_out
@@ -18,12 +19,13 @@ subroutine allocateField()
 	allocate(v(ied,jed))
 	allocate(rho(ied,jed))
 	allocate(ph(ied,jed))	
+	allocate(upper_jed(ied))	
 	allocate(x(ied,jed))
 	allocate(y(ied,jed))
 end subroutine
 
 subroutine deallocateField()
-	deallocate(f,feq,u,v,rho,ph,x,y)
+	deallocate(f,feq,u,v,rho,ph,upper_jed,x,y)
 end subroutine
 end module
 

@@ -34,6 +34,6 @@ clean:
 	@ rm -f *.mod
 	@ rm -f $(TARGET)
 
-cleanvtk:
-	@ echo Deleting *.vtk
-	@ rm -f *.vtk
+cleanoutput:
+	@ echo Deleting *.vtk tcp_*.dat
+	@ rm -f *.vtk tcp_*.dat
