@@ -44,7 +44,7 @@ subroutine outlet_open() ! open boundary condition
 	integer i,j
 	i=ied
 	do j=2,jed-1
-		if(ph(i,j)==defInner) then
+		if(ph(i,j)==defOutlet) then
 			f(3,i,j)=2*f(3,i-1,j)-f(3,i-2,j)
 			f(6,i,j)=2*f(6,i-1,j)-f(6,i-2,j)
 			f(7,i,j)=2*f(7,i-1,j)-f(7,i-2,j)
@@ -113,7 +113,7 @@ subroutine lower_wall() ! bounce back boundary condition
 	integer i,j
 	j=1
 	do i=1,ied
-		if(ph(i,j)==defWall) then
+		if(ph(i,j)==defWall .or. ph(i,j)==defMovingWall) then
 			if(ph(i,j+1)==defInner) f(2,i,j)=f(4,i,j)
 			if(ph(i+1,j+1)==defInner) f(5,i,j)=f(7,i,j)
 			if(ph(i-1,j+1)==defInner) f(6,i,j)=f(8,i,j)
@@ -125,9 +125,9 @@ subroutine inner_wall()  ! bounce back boundary condition for inner bounds
 	use vars
 	integer i,j,k
 	real dist
-	do i=2,ied-1
-	do j=2,jed-1
-		if(ph(i,j)==defWall) then
+	do i=2,ied_tongue
+	do j=2,jed_top(i)
+		if(ph(i,j)==defMovingWall) then
 			if(ph(i+1,j)==defInner) f(1,i,j)=f(3,i,j)-2*wi(3)*rho(i,j)*(ei(3,1)*u(i,j)+ei(3,2)*v(i,j))/3.0
 			if(ph(i,j+1)==defInner) f(2,i,j)=f(4,i,j)-2*wi(4)*rho(i,j)*(ei(4,1)*u(i,j)+ei(4,2)*v(i,j))/3.0
 			if(ph(i-1,j)==defInner) f(3,i,j)=f(1,i,j)-2*wi(1)*rho(i,j)*(ei(1,1)*u(i,j)+ei(1,2)*v(i,j))/3.0

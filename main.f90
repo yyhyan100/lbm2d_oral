@@ -10,11 +10,11 @@ kstep=1
 do while (alpha<=pi/2.0 .and. tt<=t_end)
 	call set_moving_boundary()
 
-	! call streaming()
-	! call bc()
-	! call getMacro()
-	! call getFeq()
-	! call collision()
+	call streaming()
+	call bc()
+	call getMacro()
+	call getFeq()
+	call collision()
 	call output(kstep)
 	kstep=kstep+1
 	tt=tt+dt

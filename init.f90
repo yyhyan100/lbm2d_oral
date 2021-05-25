@@ -12,6 +12,9 @@ subroutine init()
 	ist=1
 	jst=1
 	omg=1.0/tao
+
+	ied_tongue=300
+
 	print *, "nu = ", (2*tao-1)*dx*dx/dt/6 
 	print *, "Re = ", ied*u0*dt*6/(2*tao-1)*dx
 	call allocateField()
@@ -54,6 +57,7 @@ ph(:,jed)=defWall
 open(22, file='./top_profile/j_index.wall')
 do i=1,ied
 	read(22,*) j0
+	jed_top(i)=j0
 	ph(i,j0)=defWall
 	do j = j0+1, jed
 		ph(i,j)=defNone
@@ -61,7 +65,7 @@ do i=1,ied
 enddo
 close(22)
 
-ph(1:300,1)=defMovingWall
+ph(1:ied_tongue,1)=defMovingWall
 
 ! call set_moving_boundary()
 end subroutine
@@ -88,7 +92,7 @@ subroutine gengrid()
 use vars
 do i=1,ied
 do j=1,jed
-	x(i,j)=(-300+i-1)*dx
+	x(i,j)=(-ied_tongue+i-1)*dx
 	y(i,j)=(j-1)*dx
 enddo
 enddo
