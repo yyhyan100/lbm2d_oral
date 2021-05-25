@@ -37,3 +37,7 @@ clean:
 cleanvtk:
 	@ echo Deleting *.vtk
 	@ rm -f *.vtk
+
+cleandat:
+	@ echo Deleting *.dat
+	@ rm -f *.dat

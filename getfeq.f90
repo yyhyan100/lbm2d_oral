@@ -15,13 +15,13 @@ enddo
 enddo
 end subroutine
 
-subroutine getFeqAt(i,j,rho2,u2,v2) 
-use vars
-integer i,j,k
-real uv,eu
-	uv=u2**2+v2**2
-	do k=0,Q
-		eu=ei(k,1)*u2+ei(k,2)*v2
-		g(k)=wi(k)*rho2*(1+3*eu+4.5*eu*eu-1.5*uv)
-	enddo
-end subroutine
+! subroutine getFeqAt(i,j,rho2,u2,v2) 
+! use vars
+! integer i,j,k
+! real uv,eu
+! 	uv=u2**2+v2**2
+! 	do k=0,Q
+! 		eu=ei(k,1)*u2+ei(k,2)*v2
+! 		g(k)=wi(k)*rho2*(1+3*eu+4.5*eu*eu-1.5*uv)
+! 	enddo
+! end subroutine

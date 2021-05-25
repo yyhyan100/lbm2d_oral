@@ -22,7 +22,7 @@ subroutine init()
 	u(:,:)=0.0
 	v(:,:)=0.0
 	rho(:,:)=rho_in
-	u(1,51:jed)=u0
+	! u(1,51:jed)=u0 !????
 	ei(:,:)=0.0
 	ei(1,1)=1.0
 	ei(5,1)=1.0
@@ -40,8 +40,10 @@ subroutine init()
 	wi(1:4)=1.0/9
 	wi(5:8)=1.0/36
 	
-call set_init_ph()
-call init_f()
+	call set_init_ph()
+	u(1, 1:jed_top(1))=u0
+
+	call init_f()
 end subroutine
 !-----------------------------------------------
 subroutine set_init_ph()
@@ -49,8 +51,9 @@ use vars
 integer i,j
 
 ph(:,:)=defInner
-ph(1,:)=defWall
+ph(1,:)=defInlet
 ph(ied,:)=defOutlet
+! ph(ied,:)=defWall
 ph(:,1)=defWall
 ph(:,jed)=defWall
 
@@ -66,6 +69,7 @@ enddo
 close(22)
 
 ph(1:ied_tongue,1)=defMovingWall
+! ph(ied_tongue+1:ied, 1)=defOutlet
 
 ! call set_moving_boundary()
 end subroutine
